@@ -1,4 +1,4 @@
-# Voice-First Agentic Co-Presenter
+# Voice-First Agentic co-presenter with Amazon Nova Sonic
 
 > **v1.0** · macOS · MIT-licensed scaffolding · domain-extensible
 
