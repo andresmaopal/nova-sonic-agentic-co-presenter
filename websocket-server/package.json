@@ -1,0 +1,21 @@
+{
+  "name": "presentation-ws-server",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "WebSocket server bridging browser audio to Nova Sonic",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/run.js",
+    "test:fast": "ONLY=helpers,lifecycle,handoff,observability node tests/run.js",
+    "test:helpers": "ONLY=helpers node tests/run.js",
+    "test:handback": "ONLY=handback node tests/run.js",
+    "test:watchdog": "ONLY=watchdog node tests/run.js",
+    "test:observability": "ONLY=observability node tests/run.js",
+    "test:fail-fast": "FAIL_FAST=1 node tests/run.js"
+  },
+  "dependencies": {
+    "ws": "^8.16.0",
+    "@aws-sdk/client-bedrock-runtime": "^3.700.0"
+  }
+}

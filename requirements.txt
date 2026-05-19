@@ -1,0 +1,32 @@
+# Runtime dependencies
+strands-agents>=0.1.0
+bedrock-agentcore>=0.1.0
+boto3>=1.35.0
+aws-sdk-bedrock-runtime>=0.1.0
+smithy-aws-core>=0.0.1
+python-pptx>=1.0.0
+pdf2image>=1.17.0
+pyaudio>=0.2.14
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0
+
+# Added for nova-sonic-agentic-co-presenter (Option A)
+httpx>=0.27.0                                                # Finalysis + AntV + visor clients
+playwright>=1.50.0                                           # Chrome CDP for window switching
+python-dotenv>=1.0.0                                         # Load FINALYSIS_API_KEY from .env
+aiofiles>=24.1.0                                             # Async file I/O for report rendering
+
+# macOS-only: AppleScript / Quartz bridge for PowerPoint slide polling
+pyobjc-framework-Quartz>=10.0; sys_platform == "darwin"
+
+# macOS-only: AppKit + Foundation for the cross-Space mute indicator window
+# (NSWindow / NSStatusBar / NSColor / NSWorkspace / PyObjCTools.AppHelper).
+# These are pulled in transitively by pyobjc-framework-Quartz on most
+# wheels but pinning explicitly keeps the dependency visible and resilient
+# to upstream packaging changes. Used by src/platform/mute_helper.py.
+pyobjc-framework-Cocoa>=10.0; sys_platform == "darwin"
+
+# Dev dependencies
+hypothesis>=6.100.0
+pytest>=8.0.0
+pytest-asyncio>=0.23.0

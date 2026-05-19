@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>{{CUSTOMER_NAME}} — Financial Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{--bg:#ffffff;--surface:#ffffff;--surface-2:#ffffff;--ink:#0b1f33;--ink-muted:#4a5b6e;--ink-faint:#94a3b3;--accent:#0a4f8a;--accent-soft:#1e88e5;--success:#2e8b57;--success-soft:#5cb98a;--rule:rgba(11,31,51,.08);--shadow-sm:0 1px 2px rgba(11,31,51,.04);--shadow-md:0 4px 16px rgba(11,31,51,.06);--shadow-lg:0 10px 40px rgba(11,31,51,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{display:flex;align-items:center;justify-content:center}
+.deck{position:relative;width:100vw;height:100vh;max-width:177.78vh;max-height:56.25vw}
+.slide{position:absolute;inset:0;display:grid;grid-template-rows:auto 1fr auto;gap:1.5vh;padding:3vh 4vw;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.slide.active{opacity:1;pointer-events:auto}
+header.report-header{display:flex;flex-direction:column;gap:0.8vh}
+.eyebrow{display:flex;align-items:center;gap:14px;font-size:clamp(14px,1.8vh,22px);letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);font-weight:500}
+.eyebrow::before{content:"";display:inline-block;width:28px;height:1px;background:var(--accent)}
+h1.customer{display:none}
+p.description{font-size:clamp(22px,3.1vh,40px);line-height:1.25;font-weight:500;color:var(--ink);letter-spacing:-.005em}
+section.chart-section{display:flex;flex-direction:column;gap:1vh;min-height:0}
+.chart-title{font-size:clamp(14px,2vh,26px);letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.chart-frame{flex:1;min-height:0;background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:1.4vh 1.4vw;display:flex;justify-content:center;align-items:center;box-shadow:var(--shadow-md)}
+.chart-frame img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+.summary-content{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:2.5vh;padding:2vh 2vw}
+.summary-content h2{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(28px,4.5vh,64px);color:var(--ink);letter-spacing:-.01em}
+.summary-content ul{list-style:none;display:flex;flex-direction:column;gap:1.8vh}
+.summary-content li{font-size:clamp(16px,2.4vh,30px);line-height:1.5;color:var(--ink-muted);padding-left:1.5em;position:relative;font-weight:400}
+.summary-content li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--success)}
+footer.report-footer{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:1vh;border-top:1px solid var(--rule);font-size:clamp(12px,1.4vh,18px);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);font-weight:500}
+.nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:clamp(40px,4vw,56px);height:clamp(40px,4vw,56px);border-radius:50%;border:1px solid var(--rule);background:rgba(255,255,255,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ink-muted);font-size:clamp(16px,2vh,24px);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,border-color .2s,color .2s,box-shadow .2s;z-index:10;box-shadow:var(--shadow-sm)}
+.nav-btn:hover{background:#ffffff;border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow-md)}
+.nav-btn.prev{left:1.5vw}
+.nav-btn.next{right:1.5vw}
+.nav-btn[disabled]{opacity:0;pointer-events:none}
+.slide-indicator{position:absolute;bottom:1.5vh;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10}
+.slide-indicator span{width:8px;height:8px;border-radius:50%;background:var(--ink-faint);opacity:.4;transition:opacity .3s,background .3s}
+.slide-indicator span.active{opacity:1;background:var(--accent)}
+</style>
+</head>
+<body>
+<div class="deck">
+  <div class="slide active" id="slide-1">
+    <header class="report-header"><div class="eyebrow">Reporte Financiero</div><h1 class="customer">{{CUSTOMER_NAME}}</h1><p class="description">{{DESCRIPTION}}</p></header>
+    <section class="chart-section"><h2 class="chart-title">{{CHART_TITLE}}</h2><div class="chart-frame"><img src="{{CHART_URL}}" alt="{{CHART_TITLE}}" loading="eager" /></div></section>
+    <footer class="report-footer"><span class="footer-note">{{FOOTER_NOTE}}</span><span class="date">{{REPORT_DATE}}</span></footer>
+  </div>
+  <div class="slide" id="slide-2">
+    <header class="report-header"><div class="eyebrow">Resumen Ejecutivo</div><h1 class="customer">{{CUSTOMER_NAME}}</h1><p class="description">{{DESCRIPTION}}</p></header>
+    <div class="summary-content"><h2>Hallazgos Clave</h2><ul>
+{{EXECUTIVE_SUMMARY}}
+    </ul></div>
+    <footer class="report-footer"><span class="footer-note">{{FOOTER_NOTE}}</span><span class="date">{{REPORT_DATE}}</span></footer>
+  </div>
+  <button class="nav-btn prev" disabled aria-label="Diapositiva anterior">&#8592;</button>
+  <button class="nav-btn next" aria-label="Siguiente diapositiva">&#8594;</button>
+  <div class="slide-indicator"><span class="active"></span><span></span></div>
+</div>
+<script>(function(){const s=document.querySelectorAll('.slide'),d=document.querySelectorAll('.slide-indicator span'),p=document.querySelector('.nav-btn.prev'),n=document.querySelector('.nav-btn.next');let c=0;function g(i){s[c].classList.remove('active');d[c].classList.remove('active');c=i;s[c].classList.add('active');d[c].classList.add('active');p.disabled=c===0;n.disabled=c===s.length-1}p.addEventListener('click',()=>c>0&&g(c-1));n.addEventListener('click',()=>c<s.length-1&&g(c+1));document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')g(Math.min(c+1,s.length-1));if(e.key==='ArrowLeft')g(Math.max(c-1,0))})})();</script>
+</body>
+</html>
