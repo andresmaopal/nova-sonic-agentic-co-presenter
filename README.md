@@ -7,20 +7,20 @@ A real-time, voice-first co-presenter that works alongside you on stage. Two col
 The platform ships with **one reference specialist** ("Carlos", a financial analyst that calls a stock-market data API), but the entire architecture is domain-agnostic. Adding a new specialist for **legal**, **medical**, **engineering**, **weather analytics**, **sports**, **code review**, or any other domain is **four drop-in files** with no edits to the core. See [§ Customization](#customization-build-your-own-specialist) for a complete walkthrough.
 
 ```text
-                    ┌──────────────────────────────────────┐
-                    │ Audience hears two voices in dialog:  │
-                    │                                       │
-                    │  Presenter ─── Co-presenter (Nova)    │
-                    │       │                ▲              │
-                    │       │  "Pull up …"   │ "ok, getting │
-                    │       ▼                │  Carlos for  │
-                    │  Specialist (Carlos) ──┘  the numbers"│
-                    │       │                               │
-                    │       ▼                               │
-                    │  Live narration in es-419,            │
-                    │  chart + summary report on a second   │
-                    │  screen, return control to Nova.      │
-                    └──────────────────────────────────────┘
+                    ┌─────────────────────────────────────────┐
+                    │ Audience hears two voices in dialog:    │
+                    │                                         │
+                    │  Presenter ─── Co-presenter (Nova)      │
+                    │       │                ▲                │
+                    │       │  "Pull up …"   │ "ok, getting   │
+                    │       ▼                │  Specialist for│ 
+                    │  Specialist Agent ─────┘  the numbers"  │
+                    │       │                                 │
+                    │       ▼                                 │
+                    │  Live narration,                        │
+                    │  chart + summary report on a second     │
+                    │  screen, return control to Nova.        │
+                    └─────────────────────────────────────────┘
 ```
 
 ---
